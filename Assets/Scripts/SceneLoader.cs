@@ -22,7 +22,6 @@ public class SceneLoader
     {
         if (SceneManager.GetActiveScene().name == name)
         {
-            onLoaded?.Invoke();
             yield break;
         }
       

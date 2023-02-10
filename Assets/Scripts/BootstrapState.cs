@@ -1,11 +1,12 @@
 ﻿
-using UnityEngine;
+
+using Zenject;
 
 public class BootstrapState : IState
 {
     private const string Initial = "Initial";
     private const string Main = "Main";
-    private GameStateMachine _stateMachine;
+    private readonly GameStateMachine _stateMachine;
     private readonly SceneLoader _sceneLoader;
 
     public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader)
