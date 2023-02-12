@@ -19,8 +19,6 @@ public class MobileInputService : UpdatableService
 
     public override void FixedUpdate()
     {
-        Debug.Log(_joystick.Horizontal+" "+_joystick.Vertical);
-        Debug.Log(_joystick.Direction);
         if (Math.Abs(_joystick.Horizontal) > 0 || Math.Abs(_joystick.Vertical) > 0)
         {
             isJoystickDragging = true;

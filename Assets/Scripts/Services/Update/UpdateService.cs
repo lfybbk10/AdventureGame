@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpdateService : MonoBehaviour, IUpdateService
+public class UpdateService : MonoBehaviour, IUpdateService, ICoroutineRunner
 {
     private readonly List<IUpdatableService> _services = new ();
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 
     public void AddService(IUpdatableService service)
     {

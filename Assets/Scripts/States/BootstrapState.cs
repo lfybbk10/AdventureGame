@@ -16,23 +16,14 @@ public class BootstrapState : IState
     }
     public void Enter()
     {
-        RegisterServices();
-        _sceneLoader.Load(Initial, onLoaded: EnterLoadLevel);
-        EnterLoadLevel();
-    }
-
-    private void RegisterServices()
-    {
-        
+        _stateMachine.Enter<LoadProgressState>();
     }
 
     private void EnterLoadLevel()
     {
-        _stateMachine.Enter<LoadLevelState,string>(Main);
+        
     }
 
-    
-    
     public void Exit()
     {
         

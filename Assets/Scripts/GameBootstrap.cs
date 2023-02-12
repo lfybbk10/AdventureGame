@@ -2,17 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class GameBootstrap : MonoBehaviour, ICoroutineRunner
+public class GameBootstrap : MonoInstaller
 {
-    [SerializeField] private LoadingCurtain _loadingCurtain;
-    private Game _game;
+    [SerializeField] private GameObject _loadingCurtainPrefab;
 
-    private void Awake()
+    public override void InstallBindings()
     {
-        _game = new Game(_loadingCurtain,this);
-        _game.StateMachine.Enter<BootstrapState>();
-        
-        DontDestroyOnLoad(this);
+        Container.Bind<GameStateMachine>().AsSingle().NonLazy();
+        var loadingCurtain = Container.InstantiatePrefabForComponent<LoadingCurtain>(_loadingCurtainPrefab);
+        Container.Bind<LoadingCurtain>().FromInstance(loadingCurtain).AsSingle().NonLazy();
     }
 }
